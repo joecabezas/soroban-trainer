@@ -1,10 +1,13 @@
+import { hot } from 'react-hot-loader/root';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+
 function App() {
   return (
-    <div>app</div>
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
   );
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+export default hot(App);
