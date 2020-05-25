@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'My App',
+      title: 'k014\'s Soroban Trainer',
 
       // https://github.com/jaketrent/html-webpack-template
       inject: false,
