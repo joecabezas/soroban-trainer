@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
@@ -14,8 +13,6 @@ function NumberInput(props) {
   const handleChange = (event) => {
     setSelectedNumber(event.target.value);
   };
-
-  console.log(props);
 
   return (
     <FormControl
@@ -28,7 +25,7 @@ function NumberInput(props) {
         onChange={handleChange}
       >
         {Array(props.maxNumber).fill(1).map((_, i) => i + 1).map(
-          (n) => <MenuItem key={n} value={n}>{n}</MenuItem>,
+            (n) => <MenuItem key={n} value={n}>{n}</MenuItem>,
         )}
       </Select>
     </FormControl>

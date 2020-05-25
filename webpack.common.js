@@ -20,7 +20,7 @@ module.exports = {
       template: require('html-webpack-template'),
       appMountId: 'app',
       scripts: ['main.js'],
-    })
+    }),
   ],
   module: {
     rules: [
@@ -51,6 +51,12 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
         ],
       },
     ]

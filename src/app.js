@@ -12,16 +12,19 @@ import FunctionsIcon from '@material-ui/icons/Functions';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
-import MenuSection from './menu_section';
-import SumatoryForm from './sumatory_form';
 import Toolbar from '@material-ui/core/Toolbar';
+import TuneIcon from '@material-ui/icons/Tune';
 import Typography from '@material-ui/core/Typography';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import {makeStyles} from '@material-ui/core/styles';
 
+import MenuAbout from './menu_about';
+import MenuSection from './menu_section';
+import SumatoryForm from './sumatory_form';
+
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -78,6 +81,14 @@ const sections = [
     label: 'Divisions',
     content: null,
   },
+  {
+    divider: true,
+  },
+  {
+    icon: <TuneIcon />,
+    label: 'Configuration',
+    content: null,
+  },
 ];
 
 function App() {
@@ -102,7 +113,9 @@ function App() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar disableGutters={!open}>
+        <Toolbar
+          disableGutters={!open}
+        >
           <IconButton
             color="inherit"
             aria-label="Open drawer"
@@ -133,10 +146,16 @@ function App() {
         <Divider />
         <List component="nav">
           {sections.map(
-            (section) => <MenuSection key={section.label} {...section} />,
+              (section, i) => {
+                return section.divider ?
+                <Divider key={i} /> :
+                <MenuSection key={i} {...section} />;
+              },
           )}
+          <Divider />
+          <MenuAbout />
+          <Divider />
         </List>
-        <Divider />
       </Drawer>
     </div>
   );
