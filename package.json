@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.production.js",
-    "dev": "webpack-dev-server --config webpack.development.js"
+    "dev": "webpack-dev-server --config webpack.development.js --open"
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
