@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuSection from './menu_section';
+import SumatoryForm from './sumatory_form';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
@@ -65,7 +66,7 @@ const sections = [
   {
     icon: <FunctionsIcon />,
     label: 'Summatory',
-    content: null,
+    content: <SumatoryForm />,
   },
   {
     icon: <ClearIcon />,
