@@ -2,25 +2,29 @@ import clsx from 'clsx';
 import React from 'react';
 import {hot} from 'react-hot-loader/root';
 
-import AppBar from '@material-ui/core/AppBar';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ClearIcon from '@material-ui/icons/Clear';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
 import FunctionsIcon from '@material-ui/icons/Functions';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
 import TuneIcon from '@material-ui/icons/Tune';
-import Typography from '@material-ui/core/Typography';
 import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import {makeStyles} from '@material-ui/core/styles';
 
+import ConfigurationForm from './configuration_form';
 import MenuAbout from './menu_about';
 import MenuSection from './menu_section';
 import SumatoryForm from './sumatory_form';
+
+import {
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -87,7 +91,7 @@ const sections = [
   {
     icon: <TuneIcon />,
     label: 'Configuration',
-    content: null,
+    content: <ConfigurationForm />,
   },
 ];
 

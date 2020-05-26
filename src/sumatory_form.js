@@ -1,16 +1,23 @@
+import {Button, List, ListItem} from '@material-ui/core';
 import React from 'react';
 
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import NumberInput from './number_input';
+import {
+  createRange,
+  createOptionsFromArray,
+} from './utils/array_utils';
+import SelectInput from './select_input';
 
-const numberInputs = [
+const maxNumberOfDigits = 10;
+const maxNumbersPerProblem = 10;
+
+const inputData = [
   {
     label: 'Number of digits',
+    options: createOptionsFromArray(createRange(1, maxNumberOfDigits)),
   },
   {
     label: 'Number of numbers per problem',
+    options: createOptionsFromArray(createRange(1, maxNumbersPerProblem)),
   },
 ];
 
@@ -18,9 +25,9 @@ function SumatoryForm(props) {
   return (
     <form>
       <List>
-        {numberInputs.map((values, i) => (
+        {inputData.map((data, i) => (
           <ListItem key={i}>
-            <NumberInput {...values}/>
+            <SelectInput {...data} />
           </ListItem>
         ))}
         <ListItem

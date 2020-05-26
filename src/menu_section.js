@@ -1,11 +1,8 @@
 import React from 'react';
 
-import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import { Collapse, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
 function MenuSection(props) {
   const [isOpen, setIsOpen] = React.useState(false);
