@@ -10,24 +10,31 @@ import SelectInput from './select_input';
 const maxNumberOfDigits = 10;
 const maxNumbersPerProblem = 10;
 
-const inputData = [
-  {
-    label: 'Number of digits',
-    options: createOptionsFromArray(createRange(1, maxNumberOfDigits)),
-  },
-  {
-    label: 'Number of numbers per problem',
-    options: createOptionsFromArray(createRange(1, maxNumbersPerProblem)),
-  },
-];
-
 function SumatoryForm(props) {
+  const onNumberOfDigitsChange = () => {};
+  const onNumberOfNumbersPerProblemChange = () => {};
+
+  const inputData = [
+    {
+      label: 'Number of digits',
+      options: createOptionsFromArray(createRange(1, maxNumberOfDigits)),
+      onChange: onNumberOfDigitsChange,
+    },
+    {
+      label: 'Number of numbers per problem',
+      options: createOptionsFromArray(createRange(1, maxNumbersPerProblem)),
+      onChange: onNumberOfNumbersPerProblemChange,
+    },
+  ];
+
   return (
     <form>
       <List>
         {inputData.map((data, i) => (
           <ListItem key={i}>
-            <SelectInput {...data} />
+            <SelectInput
+              {...data}
+            />
           </ListItem>
         ))}
         <ListItem

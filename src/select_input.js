@@ -45,7 +45,7 @@ SelectInput.defaultProps = {
 };
 
 SelectInput.propTypes = {
-  onChange: PropTypes.function,
+  onChange: PropTypes.func,
   options: PropTypes.object,
   label: PropTypes.string,
 };

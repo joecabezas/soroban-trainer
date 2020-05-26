@@ -74,7 +74,10 @@ function MenuAbout() {
             <CardContent>
               <List className={classes.root}>
                 <ListItem>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                  >
                     About this page
                   </Typography>
                 </ListItem>
