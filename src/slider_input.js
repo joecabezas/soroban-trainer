@@ -1,4 +1,4 @@
-import { Box, Slider, Typography } from '@material-ui/core';
+import {Box, Slider, Typography} from '@material-ui/core';
 import React from 'react';
 
 import PropTypes from 'prop-types';
