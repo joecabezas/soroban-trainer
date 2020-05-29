@@ -11,6 +11,5 @@ ReactDOM.render(
 );
 
 if (process.env.ENV === 'development') {
-  console.log('DEVELOPMENT MODE');
   module.hot.accept();
 }
