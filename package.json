@@ -25,6 +25,7 @@
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "css-loader": "^3.5.3",
+    "dotenv-webpack": "^1.8.0",
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.20.0",
