@@ -13,7 +13,7 @@ function SelectInput(props) {
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
-    props.onChange(event);
+    props.onChange(event.target.value);
   };
 
   return (

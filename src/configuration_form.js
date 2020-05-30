@@ -1,10 +1,14 @@
 import {Button, List, ListItem, TextField} from '@material-ui/core';
+import {connect, useSelector} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 import React, {useState, useEffect, useRef} from 'react';
+
+import PropTypes from 'prop-types';
 
 import {
   createIndexedOptionsFromArray,
 } from './utils/array_utils';
+import {setVoice, setVoicePitch, setVoiceRate} from './redux/actions';
 import SelectInput from './select_input';
 import SliderInput from './slider_input';
 
@@ -52,26 +56,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConfigurationForm = () => {
+const ConfigurationForm = ({
+  setVoiceRate,
+  setVoicePitch,
+  setVoice,
+}) => {
   const [voices, speak, cancel] = useSpeechSynthesis();
-  const [currentVoice, setCurrentVoice] = useState();
-  const [rate, setRate] = useState();
-  const [pitch, setPitch] = useState();
   const [testPhrase, setTestPhrase] = useState('This is a voice Sample');
+
+  const config = useSelector((state) => state.config);
 
   const classes = useStyles();
 
-  const onRateSelected = (event, value) => {
-    setRate(value);
+  const onRateSelected = (value) => {
+    setVoiceRate(value);
   };
 
-  const onPitchSelected = (event, value) => {
-    setPitch(value);
+  const onPitchSelected = (value) => {
+    setVoicePitch(value);
   };
 
-  const onVoiceSelected = (event) => {
-    const voice = voices[event.target.value];
-    setCurrentVoice(voice);
+  const onVoiceSelected = (index) => {
+    const voice = voices[index];
+    setVoice(voice);
   };
 
   const onTestPhraseChange = (event) => {
@@ -86,60 +93,71 @@ const ConfigurationForm = () => {
   const generateSelectInput = () => {
     const inputData = {
       label: 'Voice language',
-      options: createIndexedOptionsFromArray(voices.map((voice) => voice.name)),
+      options: createIndexedOptionsFromArray(
+          voices.map((voice) => `${voice.name} (${voice.lang})`),
+      ),
       onChange: onVoiceSelected,
     };
     return <SelectInput {...inputData} />;
   };
 
   return voices.length ?
-    <form>
-      <List>
-        <ListItem
-          className={classes.listItem}
+    <List>
+      <ListItem
+        className={classes.listItem}
+      >
+        <SliderInput
+          value={config.rate}
+          label="Rate"
+          onChangeCommitted={onRateSelected}
+        />
+      </ListItem>
+      <ListItem
+        className={classes.listItem}
+      >
+        <SliderInput
+          value={config.pitch}
+          label="Pitch"
+          onChangeCommitted={onPitchSelected}
+        />
+      </ListItem>
+      <ListItem>
+        {generateSelectInput()}
+      </ListItem>
+      <ListItem>
+        <TextField
+          label="Voice test phrase"
+          variant="outlined"
+          defaultValue={testPhrase}
+          onChange={onTestPhraseChange}
+        />
+      </ListItem>
+      <ListItem
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={onTestVoiceClick}
+          fullWidth
         >
-          <SliderInput
-            label="Rate"
-            onChange={onRateSelected}
-          />
-        </ListItem>
-        <ListItem
-          className={classes.listItem}
-        >
-          <SliderInput
-            label="Pitch"
-            onChange={onPitchSelected}
-          />
-        </ListItem>
-        <ListItem>
-          {generateSelectInput()}
-        </ListItem>
-        <ListItem>
-          <TextField
-            label="Voice test phrase"
-            variant="outlined"
-            defaultValue={testPhrase}
-            onChange={onTestPhraseChange}
-          />
-        </ListItem>
-        <ListItem
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={onTestVoiceClick}
-            fullWidth
-          >
-            Test Voice
-          </Button>
-        </ListItem>
-      </List>
-    </form> :
+          Test Voice
+        </Button>
+ zq     </ListItem>
+    </List> :
     <React.Fragment>
       Loading...
     </React.Fragment>
   ;
 };
 
-export default ConfigurationForm;
+ConfigurationForm.propTypes = {
+  setVoiceRate: PropTypes.func,
+  setVoicePitch: PropTypes.func,
+  setVoice: PropTypes.func,
+};
+
+export default connect(
+    null,
+    {setVoiceRate, setVoicePitch, setVoice},
+)(ConfigurationForm);

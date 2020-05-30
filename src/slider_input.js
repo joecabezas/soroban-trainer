@@ -1,9 +1,24 @@
 import {Box, Slider, Typography} from '@material-ui/core';
-import React from 'react';
+import React, {useState} from 'react';
 
 import PropTypes from 'prop-types';
 
-const SliderInput = (props) => {
+const SliderInput = ({
+  value,
+  label,
+  onChangeCommitted,
+}) => {
+  const [internalValue, setInternalValue] = useState(value);
+
+  const handleInternalValue = (event, value) => {
+    setInternalValue(value);
+  };
+
+  const handleInternalValueCommitted = (event, value) => {
+    setInternalValue(value);
+    onChangeCommitted(value);
+  };
+
   return (
     <Box
       width={1}
@@ -11,23 +26,26 @@ const SliderInput = (props) => {
       <Typography
         variant="body2"
       >
-        {props.label}
+        {label}
       </Typography>
       <Slider
         defaultValue={1}
         step={0.1}
         min={0}
         max={2}
+        value={internalValue}
         valueLabelDisplay="auto"
-        onChange={props.onChange}
+        onChange={handleInternalValue}
+        onChangeCommitted={handleInternalValueCommitted}
       />
     </Box>
   );
 };
 
 SliderInput.propTypes = {
-  onChange: PropTypes.func,
+  value: PropTypes.number,
   label: PropTypes.string,
+  onChangeCommitted: PropTypes.func,
 };
 
 

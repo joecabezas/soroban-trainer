@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'typeface-roboto';
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 import App from './App';
 
+import 'typeface-roboto';
+
 ReactDOM.render(
-    <App />,
-    document.getElementById('app'),
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app'),
 );
 
 if (process.env.ENV === 'development') {
