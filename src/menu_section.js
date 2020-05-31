@@ -1,14 +1,26 @@
-import React from 'react';
-
+import {Collapse, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {connect} from 'react-redux';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import {Collapse, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import React from 'react';
 
-function MenuSection(props) {
-  const [isOpen, setIsOpen] = React.useState(false);
+import PropTypes from 'prop-types';
+
+import {openDrawerSection} from './redux/actions';
+
+const MenuSection = ({
+  icon,
+  label,
+  content,
+  open,
+  index,
+  openDrawerSection,
+}) => {
+  const [isOpen, setIsOpen] = React.useState(open);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+    openDrawerSection(index);
   };
 
   return (
@@ -18,16 +30,32 @@ function MenuSection(props) {
         onClick={handleClick}
       >
         <ListItemIcon>
-          {props.icon}
+          {icon}
         </ListItemIcon>
-        <ListItemText primary={props.label} />
+        <ListItemText primary={label} />
         {isOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
-        {props.content}
+        {content}
       </Collapse>
     </React.Fragment>
   );
-}
+};
 
-export default MenuSection;
+MenuSection.propTypes = {
+  icon: PropTypes.element,
+  label: PropTypes.string,
+  content: PropTypes.element,
+  open: PropTypes.bool,
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    open: state.ui.drawer.section === ownProps.index
+  }
+};
+
+export default connect(
+    mapStateToProps,
+    {openDrawerSection},
+)(MenuSection);

@@ -143,7 +143,7 @@ const ConfigurationForm = ({
         >
           Test Voice
         </Button>
- zq     </ListItem>
+      </ListItem>
     </List> :
     <React.Fragment>
       Loading...

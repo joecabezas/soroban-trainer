@@ -1,30 +1,21 @@
-import clsx from 'clsx';
-import React from 'react';
-import {hot} from 'react-hot-loader/root';
-
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ClearIcon from '@material-ui/icons/Clear';
-import FunctionsIcon from '@material-ui/icons/Functions';
-import MenuIcon from '@material-ui/icons/Menu';
-import TuneIcon from '@material-ui/icons/Tune';
-import ViewComfyIcon from '@material-ui/icons/ViewComfy';
-import {makeStyles} from '@material-ui/core/styles';
-
-import ConfigurationForm from './configuration_form';
-import MenuAbout from './menu_about';
-import MenuSection from './menu_section';
-import SumatoryForm from './sumatory_form';
-
 import {
   AppBar,
   CssBaseline,
   Divider,
   Drawer,
   IconButton,
-  List,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import MenuIcon from '@material-ui/icons/Menu';
+import React from 'react';
+
+import {hot} from 'react-hot-loader/root';
+import clsx from 'clsx';
+
+import DrawerContent from './components/ui/drawer_content';
 
 const drawerWidth = 240;
 
@@ -68,32 +59,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
 }));
-
-const sections = [
-  {
-    icon: <FunctionsIcon />,
-    label: 'Summatory',
-    content: <SumatoryForm />,
-  },
-  {
-    icon: <ClearIcon />,
-    label: 'Multiplications',
-    content: null,
-  },
-  {
-    icon: <ViewComfyIcon />,
-    label: 'Divisions',
-    content: null,
-  },
-  {
-    divider: true,
-  },
-  {
-    icon: <TuneIcon />,
-    label: 'Configuration',
-    content: <ConfigurationForm />,
-  },
-];
 
 function App() {
   const classes = useStyles();
@@ -148,18 +113,7 @@ function App() {
           </IconButton>
         </div>
         <Divider />
-        <List component="nav">
-          {sections.map(
-              (section, i) => {
-                return section.divider ?
-                <Divider key={i} /> :
-                <MenuSection key={i} {...section} />;
-              },
-          )}
-          <Divider />
-          <MenuAbout />
-          <Divider />
-        </List>
+        <DrawerContent />
       </Drawer>
     </div>
   );
