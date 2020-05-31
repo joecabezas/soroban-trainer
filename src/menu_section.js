@@ -16,10 +16,12 @@ const MenuSection = ({
   index,
   openDrawerSection,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(open);
-
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    if(open){
+      openDrawerSection(null);
+      return;
+    }
+
     openDrawerSection(index);
   };
 
@@ -33,9 +35,9 @@ const MenuSection = ({
           {icon}
         </ListItemIcon>
         <ListItemText primary={label} />
-        {isOpen ? <ExpandLess /> : <ExpandMore />}
+        {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={isOpen} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         {content}
       </Collapse>
     </React.Fragment>
