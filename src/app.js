@@ -1,9 +1,12 @@
 import {
   AppBar,
+  Container,
   CssBaseline,
   Divider,
   Drawer,
+  Grid,
   IconButton,
+  Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
@@ -16,6 +19,7 @@ import {hot} from 'react-hot-loader/root';
 import clsx from 'clsx';
 
 import DrawerContent from './components/ui/drawer_content';
+import MainContent from './components/main_content';
 
 const drawerWidth = 240;
 
@@ -57,6 +61,22 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
 }));
 
@@ -115,6 +135,29 @@ function App() {
         <Divider />
         <DrawerContent />
       </Drawer>
+      <main
+        className={classes.content}
+      >
+        <div className={classes.appBarSpacer} />
+        <Container
+          className={classes.container}
+        >
+          <Grid
+            container
+            spacing={2}
+            alignItems="center"
+          >
+            <Grid
+              item
+              xs
+            >
+              <Paper className={classes.paper}>
+                <MainContent />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </main>
     </div>
   );
 }

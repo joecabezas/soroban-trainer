@@ -1,5 +1,6 @@
 import {
   OPEN_DRAWER_SECTION,
+  SET_EXERCISE,
   SET_VOICE,
   SET_VOICE_PITCH,
   SET_VOICE_RATE
@@ -22,5 +23,10 @@ export const setVoice = value => ({
 
 export const openDrawerSection = value => ({
   type: OPEN_DRAWER_SECTION,
+  value: value
+})
+
+export const startExcercise = value => ({
+  type: SET_EXERCISE,
   value: value
 })

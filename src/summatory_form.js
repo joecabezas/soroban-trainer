@@ -1,18 +1,31 @@
 import {Button, List, ListItem} from '@material-ui/core';
-import React from 'react';
+import { connect } from 'react-redux';
+import React, { useState } from 'react';
 
+import { SUMMARY } from './redux/excercise_types';
 import {
   createRange,
   createOptionsFromArray,
 } from './utils/array_utils';
+import { startExcercise } from './redux/actions';
 import SelectInput from './select_input';
 
 const maxNumberOfDigits = 10;
 const maxNumbersPerProblem = 10;
 
-function SumatoryForm(props) {
-  const onNumberOfDigitsChange = () => {};
-  const onNumberOfNumbersPerProblemChange = () => {};
+
+const SummatoryForm = ({
+  startExcercise
+}) => {
+  const [numberOfDigits, setNumberOfDigits] = useState(1);
+  const [numberOfDigitsPerProblem, setNumberOfDigitsPerProblem] = useState(1);
+
+  const onNumberOfDigitsChange = (value) => {
+    setNumberOfDigits(parseInt(value));
+  };
+  const onNumberOfNumbersPerProblemChange = (value) => {
+    setNumberOfDigitsPerProblem(parseInt(value))
+  };
 
   const inputData = [
     {
@@ -26,6 +39,16 @@ function SumatoryForm(props) {
       onChange: onNumberOfNumbersPerProblemChange,
     },
   ];
+
+  const handleStartButtonClick = (event) => {
+    startExcercise({
+      type: SUMMARY,
+      data: {
+        numberOfDigits: numberOfDigits,
+        numberOfDigitsPerProblem: numberOfDigitsPerProblem,
+      }
+    });
+  };
 
   return (
     <form>
@@ -43,6 +66,7 @@ function SumatoryForm(props) {
             variant="contained"
             color="primary"
             size="large"
+            onClick={handleStartButtonClick}
             fullWidth
           >
             Start
@@ -53,4 +77,7 @@ function SumatoryForm(props) {
   );
 }
 
-export default SumatoryForm;
+export default connect(
+  null,
+  {startExcercise},
+)(SummatoryForm);

@@ -8,12 +8,16 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-function SelectInput(props) {
-  const [selectedOption, setSelectedOption] = React.useState(Object.keys(props.options)[0]);
+const SelectInput = ({
+  label,
+  options,
+  onChange,
+}) => {
+  const [selectedOption, setSelectedOption] = React.useState(Object.keys(options)[0]);
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
-    props.onChange(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
@@ -21,18 +25,18 @@ function SelectInput(props) {
       variant="outlined"
       fullWidth
     >
-      <FormHelperText>{props.label}</FormHelperText>
+      <FormHelperText>{label}</FormHelperText>
       <Select
         value={selectedOption}
         onChange={handleChange}
       >
-        {Object.keys(props.options).map(
+        {Object.keys(options).map(
             (key) =>
               <MenuItem
                 key={key}
                 value={key}
               >
-                {props.options[key]}
+                {options[key]}
               </MenuItem>,
         )}
       </Select>
@@ -45,9 +49,9 @@ SelectInput.defaultProps = {
 };
 
 SelectInput.propTypes = {
-  onChange: PropTypes.func,
-  options: PropTypes.object,
   label: PropTypes.string,
+  options: PropTypes.object,
+  onChange: PropTypes.func,
 };
 
 export default SelectInput;

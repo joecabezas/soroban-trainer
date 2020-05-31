@@ -8,13 +8,13 @@ import ViewComfyIcon from '@material-ui/icons/ViewComfy';
 import ConfigurationForm from '../../configuration_form';
 import MenuAbout from '../../menu_about';
 import MenuSection from '../../menu_section';
-import SumatoryForm from '../../sumatory_form';
+import SummatoryForm from '../../summatory_form';
 
 const sections = [
   {
     icon: <FunctionsIcon />,
     label: 'Summatory',
-    content: <SumatoryForm />,
+    content: <SummatoryForm />,
   },
   {
     icon: <ClearIcon />,

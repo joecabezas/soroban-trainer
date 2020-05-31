@@ -5,3 +5,4 @@ export const SET_VOICE = 'SET_VOICE';
 
 // ui
 export const OPEN_DRAWER_SECTION = 'OPEN_DRAWER_SECTION';
+export const SET_EXERCISE = 'SET_EXERCISE';

@@ -37,7 +37,10 @@ const MenuSection = ({
         <ListItemText primary={label} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        in={open}
+        timeout="auto"
+      >
         {content}
       </Collapse>
     </React.Fragment>
