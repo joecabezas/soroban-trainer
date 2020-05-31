@@ -26,7 +26,7 @@ export const openDrawerSection = value => ({
   value: value
 })
 
-export const startExcercise = value => ({
+export const startExercise = value => ({
   type: SET_EXERCISE,
   value: value
 })

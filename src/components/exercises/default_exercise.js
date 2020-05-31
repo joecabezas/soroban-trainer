@@ -6,7 +6,7 @@ const DefaultExercise = () => {
     <Typography
       variant="body2"
     >
-      Please select one excercise from the menu and click start.
+      Please select one exercise from the menu and click start.
     </Typography>
   );
 };

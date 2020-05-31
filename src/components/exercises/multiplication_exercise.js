@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 
-const MultiplicationExcercise = () => {
+const MultiplicationExercise = () => {
   return (
     <Typography
       variant="body2"
@@ -11,5 +11,5 @@ const MultiplicationExcercise = () => {
   );
 };
 
-export default MultiplicationExcercise;
+export default MultiplicationExercise;
 

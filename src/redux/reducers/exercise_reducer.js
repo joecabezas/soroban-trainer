@@ -1,4 +1,8 @@
-const exerciseReducer = (state = {}, action) => {
+const initialState = {
+  type: null
+};
+
+const exerciseReducer = (state = initialState, action) => {
   return {
     ...action.value
   };

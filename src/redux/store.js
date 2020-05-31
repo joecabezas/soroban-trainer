@@ -8,7 +8,7 @@ import uiReducer from './reducers/ui_reducer';
 
 export default createStore(
   combineReducers({
-    excercise: exerciseReducer,
+    exercise: exerciseReducer,
     ui: uiReducer,
     config: configurationReducer
   }),
