@@ -6,15 +6,15 @@ import DefaultExercise from './exercises/default_exercise';
 import SummatoryExercise from './exercises/summatory_exercise';
 
 const MainContent = ({
-  exerciseType
+  exercise
 }) => {
   const getExercise = () => {
-    switch(exerciseType){
+    switch(exercise.type){
       case SUMMARY:
-        return <SummatoryExercise />
+        return <SummatoryExercise {...exercise} />
       case MULTIPLICATION:
       default:
-        return <DefaultExercise />
+        return <DefaultExercise {...exercise} />
     }
   };
 
@@ -23,7 +23,7 @@ const MainContent = ({
 
 const mapStateToProps = (state) => {
   return {
-    exerciseType: state.exercise.type
+    exercise: state.exercise
   }
 };
 
