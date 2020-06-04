@@ -19,6 +19,7 @@ import {hot} from 'react-hot-loader/root';
 import clsx from 'clsx';
 
 import DrawerContent from './components/ui/drawer_content';
+import FullscreenSpinner from './components/fullscreen_spinner';
 import MainContent from './components/main_content';
 
 const drawerWidth = 240;
@@ -80,7 +81,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function App() {
+const App = ({
+  voicesLoaded
+}) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -94,71 +97,76 @@ function App() {
   }
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar
-          disableGutters={!open}
-        >
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.hide)}
+    <>
+      { !voicesLoaded ?
+        <FullscreenSpinner /> :
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">
-            Soroban Trainer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <DrawerContent />
-      </Drawer>
-      <main
-        className={classes.content}
-      >
-        <div className={classes.appBarSpacer} />
-        <Container
-          className={classes.container}
-        >
-          <Grid
-            container
-            spacing={2}
-            alignItems="center"
-          >
-            <Grid
-              item
-              xs
+            <Toolbar
+              disableGutters={!open}
             >
-              <Paper className={classes.paper}>
-                <MainContent />
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </main>
-    </div>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={handleDrawerOpen}
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6">
+                Soroban Trainer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <DrawerContent />
+          </Drawer>
+          <main
+            className={classes.content}
+          >
+            <div className={classes.appBarSpacer} />
+            <Container
+              className={classes.container}
+            >
+              <Grid
+                container
+                spacing={2}
+                alignItems="center"
+              >
+                <Grid
+                  item
+                  xs
+                >
+                  <Paper className={classes.paper}>
+                    <MainContent />
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Container>
+          </main>
+        </div>
+      }
+    </>
   );
 }
 
