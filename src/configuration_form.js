@@ -1,54 +1,21 @@
 import {Button, List, ListItem, TextField} from '@material-ui/core';
 import {connect, useSelector} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 
 import PropTypes from 'prop-types';
 
 import {
   createIndexedOptionsFromArray,
 } from './utils/array_utils';
-import {setVoice, setVoicePitch, setVoiceRate} from './redux/actions';
+import {
+  setVoiceIndex,
+  setVoicePitch,
+  setVoiceRate
+} from './redux/actions';
+import { useSpeechSynthesis } from './hooks/speech_synthesis';
 import SelectInput from './select_input';
 import SliderInput from './slider_input';
-
-const useSpeechSynthesis = () => {
-  const [voices, setVoices] = useState([]);
-  const synth = useRef();
-
-  const updateVoices = () => {
-    setVoices(synth.current.getVoices());
-  };
-
-  const speak = (text, voice, pitch = 1, rate = 1) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = voice;
-    utterance.pitch = pitch;
-    utterance.rate = rate;
-    synth.current.speak(utterance);
-  };
-
-  const cancel = () => {
-    synth.current.cancel();
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'object' || !window.speechSynthesis) return;
-    synth.current = window.speechSynthesis;
-    synth.current.onvoiceschanged = updateVoices;
-    updateVoices();
-
-    return () => {
-      synth.current.onvoiceschanged = null;
-    };
-  }, []);
-
-  return ([
-    voices,
-    speak,
-    cancel,
-  ]);
-};
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -159,5 +126,5 @@ ConfigurationForm.propTypes = {
 
 export default connect(
     null,
-    {setVoiceRate, setVoicePitch, setVoice},
+    {setVoiceRate, setVoicePitch, setVoiceIndex},
 )(ConfigurationForm);

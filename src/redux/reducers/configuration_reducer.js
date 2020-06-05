@@ -1,4 +1,4 @@
-import {SET_VOICE, SET_VOICE_PITCH, SET_VOICE_RATE} from '../action_types';
+import {SET_VOICE_INDEX, SET_VOICE_PITCH, SET_VOICE_RATE} from '../action_types';
 
 const initialState = {
   rate: 1,
@@ -21,8 +21,8 @@ export default function(state = initialState, action) {
       return generateVoiceState('rate');
     case SET_VOICE_PITCH:
       return generateVoiceState('pitch');
-    case SET_VOICE:
-      return generateVoiceState('voice');
+    case SET_VOICE_INDEX:
+      return generateVoiceState('voice_index');
     default:
       return state;
   }

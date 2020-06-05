@@ -1,7 +1,7 @@
 import {
   OPEN_DRAWER_SECTION,
   SET_EXERCISE,
-  SET_VOICE,
+  SET_VOICE_INDEX,
   SET_VOICE_PITCH,
   SET_VOICE_RATE
 } from './action_types';
@@ -16,8 +16,8 @@ export const setVoicePitch = value => ({
   value: value
 })
 
-export const setVoice = value => ({
-  type: SET_VOICE,
+export const setVoiceIndex = value => ({
+  type: SET_VOICE_INDEX,
   value: value
 })
 

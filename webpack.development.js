@@ -8,9 +8,8 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
-    watchOptions: {
-      ignored: /node_modules/
-    }
+    inline: true,
+    contentBase: ['./src'],
   },
   plugins: [
     new Dotenv({path: './.env'}),
