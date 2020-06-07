@@ -1,13 +1,13 @@
 import {Button, List, ListItem} from '@material-ui/core';
-import { connect } from 'react-redux';
-import React, { useState } from 'react';
+import {connect} from 'react-redux';
+import React, {useState} from 'react';
 
-import { SUMMARY } from './redux/exercise_types';
+import {SUMMARY} from './redux/exercise_types';
 import {
   createRange,
   createOptionsFromArray,
 } from './utils/array_utils';
-import { startExercise } from './redux/actions';
+import {startExercise} from './redux/actions';
 import SelectInput from './select_input';
 
 const maxNumberOfDigits = 10;
@@ -15,7 +15,7 @@ const maxNumbersPerProblem = 10;
 
 
 const SummatoryForm = ({
-  startExercise
+  startExercise,
 }) => {
   const [numberOfDigits, setNumberOfDigits] = useState(1);
   const [numberOfDigitsPerProblem, setNumberOfDigitsPerProblem] = useState(1);
@@ -24,7 +24,7 @@ const SummatoryForm = ({
     setNumberOfDigits(parseInt(value));
   };
   const onNumberOfNumbersPerProblemChange = (value) => {
-    setNumberOfDigitsPerProblem(parseInt(value))
+    setNumberOfDigitsPerProblem(parseInt(value));
   };
 
   const inputData = [
@@ -46,7 +46,7 @@ const SummatoryForm = ({
       data: {
         numberOfDigits: numberOfDigits,
         numberOfDigitsPerProblem: numberOfDigitsPerProblem,
-      }
+      },
     });
   };
 
@@ -75,9 +75,9 @@ const SummatoryForm = ({
       </List>
     </form>
   );
-}
+};
 
 export default connect(
-  null,
-  {startExercise},
+    null,
+    {startExercise},
 )(SummatoryForm);
