@@ -6,7 +6,7 @@ export const generateRandomNumer = (numberOfDigits) => {
 
 export const generateNumbers = (numberOfNumbers, numberOfDigits) => {
   const arr = [];
-  while(arr.length < numberOfNumbers){
+  while (arr.length < numberOfNumbers) {
     arr.push(generateRandomNumer(numberOfDigits));
   }
   return arr;

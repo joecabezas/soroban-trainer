@@ -1,4 +1,4 @@
-import { OPEN_DRAWER_SECTION } from '../action_types';
+import {OPEN_DRAWER_SECTION} from '../action_types';
 
 const initialState = {
   section: null,

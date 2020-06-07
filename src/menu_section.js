@@ -17,7 +17,7 @@ const MenuSection = ({
   openDrawerSection,
 }) => {
   const handleClick = () => {
-    if(open){
+    if (open) {
       openDrawerSection(null);
       return;
     }
@@ -56,8 +56,8 @@ MenuSection.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    open: state.ui.drawer.section === ownProps.index
-  }
+    open: state.ui.drawer.section === ownProps.index,
+  };
 };
 
 export default connect(

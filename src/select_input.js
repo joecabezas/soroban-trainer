@@ -42,7 +42,7 @@ const SelectInput = ({
       </Select>
     </FormControl>
   );
-}
+};
 
 SelectInput.defaultProps = {
   maxNumber: 10,

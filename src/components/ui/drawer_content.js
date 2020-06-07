@@ -1,4 +1,4 @@
-import { Divider, List } from '@material-ui/core';
+import {Divider, List} from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import FunctionsIcon from '@material-ui/icons/Functions';
 import React from 'react';
@@ -40,17 +40,17 @@ const DrawerContent = () => {
   return (
     <List component="nav">
       {sections.map(
-        (section, i) => {
-          return section.divider ?
+          (section, i) => {
+            return section.divider ?
             <Divider key={i} /> :
             <MenuSection key={i} {...section} index={i} />;
-        },
+          },
       )}
       <Divider />
       <MenuAbout />
       <Divider />
     </List>
   );
-}
+};
 
 export default DrawerContent;

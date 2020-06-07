@@ -17,7 +17,7 @@ import React from 'react';
 import {hot} from 'react-hot-loader/root';
 import clsx from 'clsx';
 
-import { useSpeechSynthesis } from './hooks/speech_synthesis';
+import {useSpeechSynthesis} from './hooks/speech_synthesis';
 import DrawerContent from './components/ui/drawer_content';
 import FullscreenSpinner from './components/fullscreen_spinner';
 import MainContent from './components/main_content';
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = ({
-  voicesLoaded
+  voicesLoaded,
 }) => {
   const classes = useStyles();
 
@@ -167,6 +167,6 @@ const App = ({
       }
     </>
   );
-}
+};
 
 export default hot(App);
