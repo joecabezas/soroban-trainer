@@ -2,23 +2,23 @@ import {connect} from 'react-redux';
 import React from 'react';
 
 import {MULTIPLICATION, SUMMARY} from '../redux/exercise_types';
-import DefaultExercise from './exercises/default_exercise';
-import SummatoryExercise from './exercises/summatory_exercise';
+import DefaultPage from './exercises/default_page';
+import SummatoryPage from './exercises/summatory_page';
 
 const MainContent = ({
   exercise,
 }) => {
-  const getExercise = () => {
+  const getPage = () => {
     switch (exercise.type) {
       case SUMMARY:
-        return <SummatoryExercise {...exercise} />;
+        return <SummatoryPage {...exercise.data} />;
       case MULTIPLICATION:
       default:
-        return <DefaultExercise {...exercise} />;
+        return <DefaultPage {...exercise.data} />;
     }
   };
 
-  return getExercise();
+  return getPage();
 };
 
 const mapStateToProps = (state) => {

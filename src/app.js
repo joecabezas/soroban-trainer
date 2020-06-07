@@ -6,7 +6,6 @@ import {
   Drawer,
   Grid,
   IconButton,
-  Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
@@ -159,9 +158,7 @@ const App = ({
                   item
                   xs
                 >
-                  <Paper className={classes.paper}>
-                    <MainContent />
-                  </Paper>
+                  <MainContent />
                 </Grid>
               </Grid>
             </Container>

@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 
-const DefaultExercise = () => {
+const DefaultPage = () => {
   return (
     <Typography
       variant="body2"
@@ -11,5 +11,5 @@ const DefaultExercise = () => {
   );
 };
 
-export default DefaultExercise;
+export default DefaultPage;
 

@@ -1,10 +1,10 @@
 const initialState = {
-  type: null
+  type: null,
 };
 
 const exerciseReducer = (state = initialState, action) => {
   return {
-    ...action.value
+    ...action.value,
   };
 };
 
