@@ -3,7 +3,7 @@ import {SET_VOICE_INDEX, SET_VOICE_PITCH, SET_VOICE_RATE} from '../action_types'
 const initialState = {
   rate: 1,
   pitch: 1,
-  voice: null,
+  voice_index: 0,
 };
 
 export default function(state = initialState, action) {

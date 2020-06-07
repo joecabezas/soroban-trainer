@@ -11,9 +11,9 @@ import {
 import {
   setVoiceIndex,
   setVoicePitch,
-  setVoiceRate
+  setVoiceRate,
 } from './redux/actions';
-import { useSpeechSynthesis } from './hooks/speech_synthesis';
+import {useSpeechSynthesisUtterance} from './hooks/speak_actions';
 import SelectInput from './select_input';
 import SliderInput from './slider_input';
 
@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
 const ConfigurationForm = ({
   setVoiceRate,
   setVoicePitch,
-  setVoice,
+  setVoiceIndex,
 }) => {
-  const [voices, speak, cancel] = useSpeechSynthesis();
+  const [speak] = useSpeechSynthesisUtterance();
   const [testPhrase, setTestPhrase] = useState('This is a voice Sample');
 
   const config = useSelector((state) => state.config);
@@ -44,8 +44,7 @@ const ConfigurationForm = ({
   };
 
   const onVoiceSelected = (index) => {
-    const voice = voices[index];
-    setVoice(voice);
+    setVoiceIndex(parseInt(index));
   };
 
   const onTestPhraseChange = (event) => {
@@ -53,11 +52,11 @@ const ConfigurationForm = ({
   };
 
   const onTestVoiceClick = (event) => {
-    cancel();
-    speak(testPhrase, currentVoice, pitch, rate);
+    speak(testPhrase);
   };
 
   const generateSelectInput = () => {
+    const voices = window.speechSynthesis.getVoices();
     const inputData = {
       label: 'Voice language',
       options: createIndexedOptionsFromArray(
@@ -68,7 +67,7 @@ const ConfigurationForm = ({
     return <SelectInput {...inputData} />;
   };
 
-  return voices.length ?
+  return (
     <List>
       <ListItem
         className={classes.listItem}
@@ -111,17 +110,14 @@ const ConfigurationForm = ({
           Test Voice
         </Button>
       </ListItem>
-    </List> :
-    <React.Fragment>
-      Loading...
-    </React.Fragment>
-  ;
+    </List>
+  );
 };
 
 ConfigurationForm.propTypes = {
   setVoiceRate: PropTypes.func,
   setVoicePitch: PropTypes.func,
-  setVoice: PropTypes.func,
+  setVoiceIndex: PropTypes.func,
 };
 
 export default connect(

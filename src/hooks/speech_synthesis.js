@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 const useSpeechSynthesis = () => {
   const [voices, setVoices] = useState([]);
@@ -38,4 +38,4 @@ const useSpeechSynthesis = () => {
   ]);
 };
 
-export { useSpeechSynthesis };
+export {useSpeechSynthesis};
