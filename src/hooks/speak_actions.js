@@ -4,8 +4,10 @@ const useSpeechSynthesisUtterance = () => {
   const config = useSelector((state) => state.config);
   const synth = window.speechSynthesis;
 
-  const speak = (text) => {
-    cancel();
+  const speak = (text, cancelPrevious=true) => {
+    if (cancelPrevious) {
+      cancel();
+    }
     speakUsing(
         text,
         synth.getVoices()[config.voice_index],

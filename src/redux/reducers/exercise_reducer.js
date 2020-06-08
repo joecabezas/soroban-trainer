@@ -4,6 +4,7 @@ const initialState = {
 
 const exerciseReducer = (state = initialState, action) => {
   return {
+    ...state,
     ...action.value,
   };
 };
