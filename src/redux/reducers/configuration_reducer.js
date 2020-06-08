@@ -1,4 +1,8 @@
-import {SET_VOICE_INDEX, SET_VOICE_PITCH, SET_VOICE_RATE} from '../action_types';
+import {
+  SET_VOICE_INDEX,
+  SET_VOICE_PITCH,
+  SET_VOICE_RATE,
+} from '../action_types';
 
 const initialState = {
   rate: 1,

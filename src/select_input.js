@@ -13,7 +13,9 @@ const SelectInput = ({
   options,
   onChange,
 }) => {
-  const [selectedOption, setSelectedOption] = React.useState(Object.keys(options)[0]);
+  const [selectedOption, setSelectedOption] = React.useState(
+      Object.keys(options)[0],
+  );
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);

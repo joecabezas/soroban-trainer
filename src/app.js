@@ -81,9 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const App = ({
-  voicesLoaded,
-}) => {
+const App = () => {
   const classes = useStyles();
 
   const [voices] = useSpeechSynthesis();

@@ -1,4 +1,9 @@
-import {Collapse, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {
+  Collapse,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
 import {connect} from 'react-redux';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -52,6 +57,8 @@ MenuSection.propTypes = {
   label: PropTypes.string,
   content: PropTypes.element,
   open: PropTypes.bool,
+  index: PropTypes.number,
+  openDrawerSection: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {

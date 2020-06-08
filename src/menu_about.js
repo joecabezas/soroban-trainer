@@ -86,7 +86,11 @@ function MenuAbout() {
                     variant="body2"
                     color="textSecondary"
                   >
-                    My name is Joe Cabezas Campos, I created this in order to practice with the soroban without having to look at the screen while the numbers are read out loud, it works for me and I made it opensource, if you have suggestions, please let me know, have fun!
+                    My name is Joe Cabezas Campos, I created this in order to
+                    practice with the soroban without having to look at the
+                    screen while the numbers are read out loud, it works for
+                    me and I made it opensource, if you have suggestions,
+                    please let me know, have fun!
                   </Typography>
                 </ListItem>
                 <ListItem>
