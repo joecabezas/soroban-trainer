@@ -18,26 +18,23 @@ const useStyles = makeStyles((theme) => ({
   cardActions: {
     backgroundColor: 'lightsteelblue',
   },
-  context: {
-    padding: theme.spacing(0.3),
-    borderRadius: theme.shape.borderRadius,
-  },
-  contextPrimary: {
-    color: theme.palette.primary.main,
-  },
-  contextPrimaryInverse: {
-    color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main,
-  },
 }));
 
 const SummatoryExercise = ({
   numberOfDigits,
   numberOfNumbers,
 }) => {
-  const [numbers, setNumbers] = useState([]);
-  const [speak, stop] = useSpeechSynthesisUtterance();
   const classes = useStyles();
+  const [numbers, setNumbers] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const onUtteranceQueueChange = (pending) => {
+    setIsPlaying(pending > 1);
+  };
+
+  const [speak, stop] = useSpeechSynthesisUtterance({
+    onUtteranceQueueChange,
+  });
 
   useEffect(() => {
     setNumbers(
@@ -86,6 +83,7 @@ const SummatoryExercise = ({
           className={classes.cardActions}
         >
           <PlayStopButton
+            isPlaying={isPlaying}
             play={handlePlayButton}
             stop={handleStopButton}
           />

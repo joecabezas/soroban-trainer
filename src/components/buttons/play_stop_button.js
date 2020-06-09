@@ -1,19 +1,17 @@
 import {Button} from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import React, {useState} from 'react';
+import React from 'react';
 import StopIcon from '@material-ui/icons/Stop';
 
 import PropTypes from 'prop-types';
 
 const PlayStopButton = ({
+  isPlaying,
   play,
   stop,
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   const handleClick = () => {
     isPlaying? stop() : play();
-    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -32,6 +30,7 @@ const PlayStopButton = ({
 };
 
 PlayStopButton.propTypes = {
+  isPlaying: PropTypes.bool,
   play: PropTypes.func,
   stop: PropTypes.func,
 };

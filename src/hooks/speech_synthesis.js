@@ -8,18 +8,6 @@ const useSpeechSynthesis = () => {
     setVoices(synth.current.getVoices());
   };
 
-  const speak = (text, voice, pitch = 1, rate = 1) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = voice;
-    utterance.pitch = pitch;
-    utterance.rate = rate;
-    synth.current.speak(utterance);
-  };
-
-  const cancel = () => {
-    synth.current.cancel();
-  };
-
   useEffect(() => {
     if (typeof window !== 'object' || !window.speechSynthesis) return;
     synth.current = window.speechSynthesis;
@@ -33,8 +21,6 @@ const useSpeechSynthesis = () => {
 
   return ([
     voices,
-    speak,
-    cancel,
   ]);
 };
 
