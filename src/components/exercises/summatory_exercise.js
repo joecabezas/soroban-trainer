@@ -2,7 +2,7 @@ import {Button, Card, Divider, Grid} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import CardActions from '@material-ui/core/CardActions';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -27,6 +27,7 @@ const SummatoryExercise = ({
   const classes = useStyles();
   const [numbers, setNumbers] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [startPlaying, setStartPlaying] = useState(false);
 
   const onUtteranceQueueChange = (pending) => {
     setIsPlaying(pending > 1);
@@ -36,29 +37,42 @@ const SummatoryExercise = ({
     onUtteranceQueueChange,
   });
 
-  useEffect(() => {
+  const play = useCallback(() => {
+    numbers.forEach((number) => speak(number, false));
+  }, [numbers]);
+
+  const regenerateNumbers = useCallback(() => {
     setNumbers(
         generateNumbers(numberOfNumbers, numberOfDigits),
     );
   }, [numberOfDigits, numberOfNumbers]);
 
-  const handleReload = () => {
-    stop();
-    setNumbers(
-        generateNumbers(numberOfNumbers, numberOfDigits),
-    );
-  };
+  useEffect(() => {
+    regenerateNumbers();
+  }, [regenerateNumbers]);
 
-  const getTotal = () => {
-    return numbers.reduce((acc, cur) => acc + cur, 0);
-  };
+  useEffect(() => {
+    if (!startPlaying) return;
+    play();
+    setStartPlaying(false);
+  }, [startPlaying, play]);
 
   const handlePlayButton = () => {
-    numbers.forEach((number) => speak(number, false));
+    play();
+  };
+
+  const handleReload = () => {
+    stop();
+    regenerateNumbers();
+    setStartPlaying(true);
   };
 
   const handleStopButton = () => {
     stop();
+  };
+
+  const getTotal = () => {
+    return numbers.reduce((acc, cur) => acc + cur, 0);
   };
 
   return (
